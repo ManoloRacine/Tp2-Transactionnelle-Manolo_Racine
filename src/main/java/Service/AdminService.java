@@ -31,6 +31,10 @@ public class AdminService {
         return libraryDao.getLibrary(id) ;
     }
 
+    public Library getLibraryWithDocuments(long id) {
+        return libraryDao.getLibraryWithDocuments(id) ;
+    }
+
     public Client getClient(long id) {
         return libraryDao.getClient(id) ;
     }

@@ -3,6 +3,7 @@ package Model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 public class Client extends Account {
     private double totalLateFees ;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Borrowing> borrowings ;
 

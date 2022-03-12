@@ -22,8 +22,8 @@ public abstract class Document {
     private int releaseYear ;
     private boolean isBorrowed = false;
 
-    @ManyToOne
-    @JoinColumn(name = "myLibrary_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Library_id")
     @ToString.Exclude
     private Library library ;
 
