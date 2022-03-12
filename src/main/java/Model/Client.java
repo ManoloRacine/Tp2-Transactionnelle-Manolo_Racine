@@ -1,9 +1,6 @@
 package Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
@@ -12,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -20,6 +18,7 @@ public class Client extends Account {
     private double totalLateFees ;
 
     @OneToMany
+    @ToString.Exclude
     private List<Borrowing> borrowings ;
 
     public void payLateFees() {

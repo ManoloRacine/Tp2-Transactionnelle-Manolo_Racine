@@ -3,6 +3,7 @@ package Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public abstract class Account {
 
     @ManyToOne
     @PrimaryKeyJoinColumn
+    @ToString.Exclude
     protected Library myLibrary ;
 
 

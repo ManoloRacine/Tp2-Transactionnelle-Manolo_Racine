@@ -23,7 +23,7 @@ public abstract class Document {
     private boolean isBorrowed = false;
 
     @ManyToOne
-    @JoinColumn(name = "library_id")
+    @JoinColumn(name = "myLibrary_id")
     @ToString.Exclude
     private Library library ;
 
