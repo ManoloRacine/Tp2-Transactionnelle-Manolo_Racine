@@ -14,11 +14,16 @@ import java.time.LocalDateTime;
 public class Borrowing {
     @Id
     @GeneratedValue
-    public long id ;
-    public LocalDateTime locationDate ;
-    public LocalDateTime returnDate ;
+    private long id ;
+    private LocalDateTime locationDate ;
+    private LocalDateTime returnDate ;
 
     @OneToOne
     @PrimaryKeyJoinColumn
-    public Document borrowedDocument ;
+    private Document borrowedDocument ;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    @ToString.Exclude
+    private Client client ;
 }

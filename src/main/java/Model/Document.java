@@ -22,7 +22,7 @@ public abstract class Document {
     private int releaseYear ;
     private boolean isBorrowed = false;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "Library_id")
     @ToString.Exclude
     private Library library ;

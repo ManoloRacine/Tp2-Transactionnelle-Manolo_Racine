@@ -20,4 +20,18 @@ public class Library {
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
     private List<Document> documents = new ArrayList<>();
 
+    public List<Document> researchDocumentByTitle(String title) {
+        List<Document> documentsByTitle = new ArrayList<>() ;
+
+        for (Document document : documents) {
+
+            if (document.getName().contains(title)) {
+                documentsByTitle.add(document) ;
+            }
+
+        }
+
+        return documentsByTitle ;
+    }
+
 }

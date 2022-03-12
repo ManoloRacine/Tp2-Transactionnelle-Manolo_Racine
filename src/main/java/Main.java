@@ -2,6 +2,7 @@ import Model.Employee;
 import Persistence.LibraryDao;
 import Persistence.LibraryDaoJPAH2;
 import Service.AdminService;
+import Service.ClientService;
 import Service.EmployeeService;
 
 public class Main {
@@ -17,6 +18,12 @@ public class Main {
         //add a book to the library
         EmployeeService employeeService = new EmployeeService(libraryDao) ;
         employeeService.addBookToLibrary("name", "author", 2002, 200, "genre", libraryId) ;
+        employeeService.addBookToLibrary("testn", "testa", 2020, 100, "testg", libraryId) ;
         System.out.println(adminService.getLibraryWithDocuments(libraryId));
+
+        //book research by title
+        ClientService clientService = new ClientService(libraryDao) ;
+        System.out.println(clientService.researchDocumentByTitle("name", libraryId));
+        System.out.println(clientService.researchDocumentByTitle("nam", libraryId));
     }
 }
