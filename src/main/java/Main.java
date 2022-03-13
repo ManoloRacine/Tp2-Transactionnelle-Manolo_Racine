@@ -19,11 +19,16 @@ public class Main {
         EmployeeService employeeService = new EmployeeService(libraryDao) ;
         employeeService.addBookToLibrary("name", "author", 2002, 200, "genre", libraryId) ;
         employeeService.addBookToLibrary("testn", "testa", 2020, 100, "testg", libraryId) ;
+        employeeService.addBookToLibrary("testn2", "testa", 2021, 101, "test2", libraryId) ;
         System.out.println(adminService.getLibraryWithDocuments(libraryId));
 
         //book research by title
         ClientService clientService = new ClientService(libraryDao) ;
         System.out.println(clientService.researchDocumentByTitle("name", libraryId));
         System.out.println(clientService.researchDocumentByTitle("nam", libraryId));
+
+        //book research by author
+        System.out.println(clientService.researchDocumentByAuthor("testa", libraryId));
+
     }
 }

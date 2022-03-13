@@ -28,10 +28,22 @@ public class Library {
             if (document.getName().contains(title)) {
                 documentsByTitle.add(document) ;
             }
-
         }
 
         return documentsByTitle ;
+    }
+
+    public List<Document> researchDocumentByAuthor(String author) {
+        List<Document> documentsByAuthor = new ArrayList<>() ;
+
+        for (Document document : documents) {
+
+            if (document.getAuthor().equals(author)) {
+                documentsByAuthor.add(document) ;
+            }
+        }
+
+        return documentsByAuthor ;
     }
 
 }
