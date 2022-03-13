@@ -1,4 +1,3 @@
-import Model.Employee;
 import Persistence.LibraryDao;
 import Persistence.LibraryDaoJPAH2;
 import Service.AdminService;
@@ -22,15 +21,19 @@ public class Main {
         employeeService.addBookToLibrary("testn2", "testa", 2021, 101, "testg", libraryId) ;
         System.out.println(adminService.getLibraryWithDocuments(libraryId));
 
-        //book research by title
+        //document research by title
         ClientService clientService = new ClientService(libraryDao) ;
         System.out.println(clientService.researchDocumentByTitle("name", libraryId));
         System.out.println(clientService.researchDocumentByTitle("nam", libraryId));
 
-        //book research by author
+        //document research by author
         System.out.println(clientService.researchDocumentByAuthor("testa", libraryId));
 
-        //book research by year
+        //document research by year
         System.out.println(clientService.researchDocumentByYear(2020, libraryId));
+
+        //book research by category
+        System.out.println(clientService.researchBooksByCategory("testg", libraryId));
+
     }
 }

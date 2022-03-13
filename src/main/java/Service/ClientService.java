@@ -1,5 +1,6 @@
 package Service;
 
+import Model.Book;
 import Model.Document;
 import Model.Library;
 import Persistence.LibraryDao;
@@ -30,5 +31,11 @@ public class ClientService {
         Library library = libraryDao.getLibraryWithDocuments(libraryId) ;
         List<Document> documentsByYear = library.researchDocumentsByYear(year) ;
         return documentsByYear ;
+    }
+
+    public List<Book> researchBooksByCategory(String genre, long libraryId) {
+        Library library = libraryDao.getLibraryWithDocuments(libraryId) ;
+        List<Book> documentsByGenre = library.researchBooksByCategory(genre) ;
+        return documentsByGenre ;
     }
 }

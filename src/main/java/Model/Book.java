@@ -14,6 +14,6 @@ import javax.persistence.Entity;
 @EqualsAndHashCode
 public class Book extends Document {
     private int nbOfPages ;
-    private String genre ;
+    private String category;
 
 }

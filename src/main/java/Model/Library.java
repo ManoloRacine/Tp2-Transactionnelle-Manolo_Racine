@@ -58,4 +58,22 @@ public class Library {
 
         return documentsByYear ;
     }
+
+    public List<Book> researchBooksByCategory(String genre) {
+        List<Book> booksByCategory = new ArrayList<>() ;
+
+        for (Document document : documents) {
+
+            if (document instanceof Book) {
+
+                Book book = (Book) document ;
+
+                if (book.getCategory().equals(genre)) {
+                    booksByCategory.add(book) ;
+                }
+            }
+        }
+
+        return booksByCategory ;
+    }
 }

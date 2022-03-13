@@ -11,13 +11,13 @@ public class EmployeeService {
         this.libraryDao = libraryDao ;
     }
 
-    public void addBookToLibrary(String name, String author, int releaseYear, int nbOfPages, String genre, long libraryId) {
+    public void addBookToLibrary(String name, String author, int releaseYear, int nbOfPages, String category, long libraryId) {
         Book book = Book.builder().
                 name(name).
                 author(author).
                 releaseYear(releaseYear).
                 nbOfPages(nbOfPages).
-                genre(genre).
+                category(category).
                 library(libraryDao.getLibraryWithDocuments(libraryId)).
                 build() ;
 
