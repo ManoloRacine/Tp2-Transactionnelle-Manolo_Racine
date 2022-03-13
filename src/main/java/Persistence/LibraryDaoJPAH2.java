@@ -67,6 +67,57 @@ public class LibraryDaoJPAH2 implements LibraryDao{
         return getObjectFromDatabase(id, Client.class) ;
     }
 
+    @Override
+    public Client getClientWithLibrary(long clientId) {
+        EntityManager em = emf.createEntityManager() ;
+        em.getTransaction().begin();
+
+        Client client = queryFetchClientWithLibrary(clientId, em) ;
+
+        em.getTransaction().commit();
+        em.close();
+
+        return client ;
+    }
+
+
+
+
+    private Client queryFetchClientWithLibrary(long clientId, EntityManager em) {
+        final TypedQuery<Client> query = em.createQuery(
+                "select c from Client c left join fetch c.myLibrary cl left join fetch cl.documents cld where c.id = :clientId",
+                Client.class
+        ) ;
+
+        query.setParameter("clientId", clientId) ;
+
+        return query.getSingleResult() ;
+    }
+
+    @Override
+    public Client getClientWithBorrowings(long clientId) {
+        EntityManager em = emf.createEntityManager() ;
+        em.getTransaction().begin();
+
+        Client client = queryFetchClientWithBorrowings(clientId, em) ;
+
+        em.getTransaction().commit();
+        em.close();
+
+        return client ;
+    }
+
+    private Client queryFetchClientWithBorrowings(long clientId, EntityManager em) {
+        final TypedQuery<Client> query = em.createQuery(
+                "select c from Client c left join fetch c.borrowings cb where c.id = :clientId",
+                Client.class
+        ) ;
+
+        query.setParameter("clientId", clientId) ;
+
+        return query.getSingleResult() ;
+    }
+
     private <T> T getObjectFromDatabase(long id, Class<T> objectClass) {
         EntityManager em = emf.createEntityManager() ;
         em.getTransaction().begin();

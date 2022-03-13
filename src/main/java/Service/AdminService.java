@@ -38,4 +38,8 @@ public class AdminService {
     public Client getClient(long id) {
         return libraryDao.getClient(id) ;
     }
+
+    public Client getClientWithBorrowings(long id) {
+        return libraryDao.getClientWithBorrowings(id) ;
+    }
 }

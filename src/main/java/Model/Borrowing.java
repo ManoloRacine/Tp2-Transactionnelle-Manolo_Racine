@@ -18,11 +18,11 @@ public class Borrowing {
     private LocalDateTime locationDate ;
     private LocalDateTime returnDate ;
 
-    @OneToOne
+    @ManyToOne
     @PrimaryKeyJoinColumn
     private Document borrowedDocument ;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     @ToString.Exclude
     private Client client ;

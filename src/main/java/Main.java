@@ -12,7 +12,7 @@ public class Main {
         AdminService adminService = new AdminService(libraryDao) ;
         long libraryId = adminService.createLibrary() ;
         long clientId = adminService.createClient("firstName", "lastName", "password", libraryId) ;
-        System.out.println(adminService.getClient(clientId));
+        System.out.println(adminService.getClientWithBorrowings(clientId));
 
         //add a book to the library
         EmployeeService employeeService = new EmployeeService(libraryDao) ;
@@ -35,5 +35,8 @@ public class Main {
         //book research by category
         System.out.println(clientService.researchBooksByCategory("testg", libraryId));
 
+        //borrow document
+        clientService.borrowDocument(clientId, 3) ;
+        System.out.println(adminService.getClientWithBorrowings(clientId));
     }
 }

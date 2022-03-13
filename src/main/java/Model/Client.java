@@ -19,7 +19,6 @@ public class Client extends Account {
     private double totalLateFees ;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @ToString.Exclude
     private List<Borrowing> borrowings ;
 
     public void payLateFees() {

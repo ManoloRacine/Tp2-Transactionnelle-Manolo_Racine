@@ -76,4 +76,13 @@ public class Library {
 
         return booksByCategory ;
     }
+
+    public Document getDocumentById(long id) {
+        for (Document document : documents) {
+            if (document.getId() == id) {
+                return document ;
+            }
+        }
+        return null ;
+    }
 }

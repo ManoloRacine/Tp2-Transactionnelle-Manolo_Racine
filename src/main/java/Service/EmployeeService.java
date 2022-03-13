@@ -11,7 +11,7 @@ public class EmployeeService {
         this.libraryDao = libraryDao ;
     }
 
-    public void addBookToLibrary(String name, String author, int releaseYear, int nbOfPages, String category, long libraryId) {
+    public long addBookToLibrary(String name, String author, int releaseYear, int nbOfPages, String category, long libraryId) {
         Book book = Book.builder().
                 name(name).
                 author(author).
@@ -23,5 +23,7 @@ public class EmployeeService {
 
         book.getLibrary().getDocuments().add(book) ;
         libraryDao.merge(book.getLibrary());
+
+        return book.getId() ;
     }
 }

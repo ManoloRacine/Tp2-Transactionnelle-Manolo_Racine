@@ -1,10 +1,10 @@
 package Service;
 
-import Model.Book;
-import Model.Document;
-import Model.Library;
+import Model.*;
 import Persistence.LibraryDao;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ClientService {
@@ -37,5 +37,43 @@ public class ClientService {
         Library library = libraryDao.getLibraryWithDocuments(libraryId) ;
         List<Book> documentsByGenre = library.researchBooksByCategory(genre) ;
         return documentsByGenre ;
+    }
+
+    public void borrowDocument(long clientId, long documentId) {
+        Client client = libraryDao.getClientWithLibrary(clientId) ;
+        Document documentToBorrow = client.getMyLibrary().getDocumentById(documentId);
+
+        if (documentToBorrow == null) {
+            throw new IllegalArgumentException() ;
+        }
+
+        Borrowing borrowing = Borrowing.builder().borrowedDocument(documentToBorrow).
+                locationDate(LocalDateTime.now()).
+                returnDate(LocalDateTime.now().plus(getAmountOfWeeks(documentToBorrow), ChronoUnit.WEEKS))
+                .borrowedDocument(documentToBorrow).build() ;
+
+        client = libraryDao.getClientWithBorrowings(clientId) ;
+        client.getBorrowings().add(borrowing) ;
+        documentToBorrow.setBorrowed(true);
+
+        libraryDao.merge(documentToBorrow);
+        libraryDao.save(borrowing);
+        libraryDao.merge(client);
+    }
+
+    private int getAmountOfWeeks(Document document) {
+        int nbOfWeeksForRental ;
+
+        if (document instanceof Book) {
+            nbOfWeeksForRental = 3 ;
+        }
+        else if (document instanceof CD) {
+            nbOfWeeksForRental = 2 ;
+        }
+        else {
+            nbOfWeeksForRental = 1 ;
+        }
+
+        return nbOfWeeksForRental ;
     }
 }
