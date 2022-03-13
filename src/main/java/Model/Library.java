@@ -20,7 +20,7 @@ public class Library {
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
     private List<Document> documents = new ArrayList<>();
 
-    public List<Document> researchDocumentByTitle(String title) {
+    public List<Document> researchDocumentsByTitle(String title) {
         List<Document> documentsByTitle = new ArrayList<>() ;
 
         for (Document document : documents) {
@@ -33,7 +33,7 @@ public class Library {
         return documentsByTitle ;
     }
 
-    public List<Document> researchDocumentByAuthor(String author) {
+    public List<Document> researchDocumentsByAuthor(String author) {
         List<Document> documentsByAuthor = new ArrayList<>() ;
 
         for (Document document : documents) {
@@ -46,4 +46,16 @@ public class Library {
         return documentsByAuthor ;
     }
 
+    public List<Document> researchDocumentsByYear(int year) {
+        List<Document> documentsByYear = new ArrayList<>() ;
+
+        for (Document document : documents) {
+
+            if (document.getReleaseYear() == year) {
+                documentsByYear.add(document) ;
+            }
+        }
+
+        return documentsByYear ;
+    }
 }

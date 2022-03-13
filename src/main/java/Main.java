@@ -17,9 +17,9 @@ public class Main {
 
         //add a book to the library
         EmployeeService employeeService = new EmployeeService(libraryDao) ;
-        employeeService.addBookToLibrary("name", "author", 2002, 200, "genre", libraryId) ;
-        employeeService.addBookToLibrary("testn", "testa", 2020, 100, "testg", libraryId) ;
-        employeeService.addBookToLibrary("testn2", "testa", 2021, 101, "test2", libraryId) ;
+        employeeService.addBookToLibrary("name", "author", 2020, 200, "testg", libraryId) ;
+        employeeService.addBookToLibrary("testn", "testa", 2020, 100, "genre", libraryId) ;
+        employeeService.addBookToLibrary("testn2", "testa", 2021, 101, "testg", libraryId) ;
         System.out.println(adminService.getLibraryWithDocuments(libraryId));
 
         //book research by title
@@ -30,5 +30,7 @@ public class Main {
         //book research by author
         System.out.println(clientService.researchDocumentByAuthor("testa", libraryId));
 
+        //book research by year
+        System.out.println(clientService.researchDocumentByYear(2020, libraryId));
     }
 }
