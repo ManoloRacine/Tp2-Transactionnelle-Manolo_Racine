@@ -17,7 +17,9 @@ public class AdminService {
                 firstName(firstName).
                 lastName(lastName)
                 .password(password).build() ;
+
         libraryDao.save(client);
+
         return client.getId() ;
     }
 

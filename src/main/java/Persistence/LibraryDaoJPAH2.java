@@ -39,6 +39,23 @@ public class LibraryDaoJPAH2 implements LibraryDao{
     }
 
     @Override
+    public Client getClient(long id) {
+        return getObjectFromDatabase(id, Client.class) ;
+    }
+
+    private <T> T getObjectFromDatabase(long id, Class<T> objectClass) {
+        EntityManager em = emf.createEntityManager() ;
+        em.getTransaction().begin();
+
+        T object = em.find(objectClass, id) ;
+
+        em.getTransaction().commit();
+        em.close();
+
+        return object ;
+    }
+
+    @Override
     public Library getLibraryWithDocuments(long id) {
         EntityManager em = emf.createEntityManager() ;
         em.getTransaction().begin();
@@ -62,10 +79,7 @@ public class LibraryDaoJPAH2 implements LibraryDao{
         return query.getSingleResult() ;
     }
 
-    @Override
-    public Client getClient(long id) {
-        return getObjectFromDatabase(id, Client.class) ;
-    }
+
 
     @Override
     public Client getClientWithLibrary(long clientId) {
@@ -79,9 +93,6 @@ public class LibraryDaoJPAH2 implements LibraryDao{
 
         return client ;
     }
-
-
-
 
     private Client queryFetchClientWithLibrary(long clientId, EntityManager em) {
         final TypedQuery<Client> query = em.createQuery(
@@ -118,15 +129,5 @@ public class LibraryDaoJPAH2 implements LibraryDao{
         return query.getSingleResult() ;
     }
 
-    private <T> T getObjectFromDatabase(long id, Class<T> objectClass) {
-        EntityManager em = emf.createEntityManager() ;
-        em.getTransaction().begin();
 
-        T object = em.find(objectClass, id) ;
-
-        em.getTransaction().commit();
-        em.close();
-
-        return object ;
-    }
 }
