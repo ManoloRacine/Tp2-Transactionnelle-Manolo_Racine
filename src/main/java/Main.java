@@ -38,5 +38,8 @@ public class Main {
         //borrow document
         clientService.borrowDocument(clientId, 3) ;
         System.out.println(adminService.getClientWithBorrowings(clientId));
+
+        //get a list of borrowings
+        System.out.println(clientService.getListOfBorrowings(clientId));
     }
 }

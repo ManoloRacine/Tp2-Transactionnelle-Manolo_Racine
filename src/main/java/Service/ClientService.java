@@ -55,10 +55,11 @@ public class ClientService {
         client = libraryDao.getClientWithBorrowings(clientId) ;
         client.getBorrowings().add(borrowing) ;
         documentToBorrow.setBorrowed(true);
+        borrowing.setClient(client);
 
         libraryDao.merge(documentToBorrow);
-        libraryDao.save(borrowing);
         libraryDao.merge(client);
+        libraryDao.save(borrowing);
     }
 
     private int getAmountOfWeeks(Document document) {
@@ -75,5 +76,10 @@ public class ClientService {
         }
 
         return nbOfWeeksForRental ;
+    }
+
+    public List<Borrowing> getListOfBorrowings(long clientId) {
+        Client client = libraryDao.getClientWithBorrowings(clientId) ;
+        return client.getBorrowings() ;
     }
 }

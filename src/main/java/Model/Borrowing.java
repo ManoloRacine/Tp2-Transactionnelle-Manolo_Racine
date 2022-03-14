@@ -22,7 +22,7 @@ public class Borrowing {
     @PrimaryKeyJoinColumn
     private Document borrowedDocument ;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @PrimaryKeyJoinColumn
     @ToString.Exclude
     private Client client ;
